@@ -16,22 +16,20 @@ import numpy as np
 ### 导入数据集
 ```python
 dataset = pd.read_csv('50_Startups.csv')
-X = dataset.iloc[ : , :-1].values
-Y = dataset.iloc[ : ,  4 ].values
+X = dataset.iloc[ : , :-1]
+Y = dataset.iloc[ : ,  4 ]
 ```
 
 ### 将类别数据数字化
 ```python
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 labelencoder = LabelEncoder()
-X[: , 3] = labelencoder.fit_transform(X[ : , 3])
-onehotencoder = OneHotEncoder(categorical_features = [3])
-X = onehotencoder.fit_transform(X).toarray()
+X.iloc[: , 3] = labelencoder.fit_transform(X.iloc[ : , 3])
 ```
 
 ### 躲避虚拟变量陷阱
 ```python
-X = X[: , 1:]
+X = X.iloc[: , 1:]
 ```
 
 ### 拆分数据集为训练集和测试集
